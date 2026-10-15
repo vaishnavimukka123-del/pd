@@ -1,0 +1,41 @@
+import pandas as pd
+import numpy as np
+
+# Create a sample DataFrame
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', None, 'Eve'],
+    'Age': [25, np.nan, 30, 22, 29],
+    'Department': ['HR', 'Finance', 'HR', 'IT', 'Finance'],
+    'Salary': [50000, 60000, 55000, np.nan, 62000]
+}
+
+df = pd.DataFrame(data)
+
+# Display the original DataFrame
+print("Original DataFrame:\n")
+print(df)
+
+
+# a. Filling NaN with a string
+df_filled = df.fillna('Missing')
+
+print("\nDataFrame after filling NaN with 'Missing':\n")
+print(df_filled)
+
+
+# b. Sorting based on column values
+df_sorted = df.sort_values(
+    by='Age',
+    ascending=True,
+    na_position='last'
+)
+
+print("\nDataFrame sorted by Age:\n")
+print(df_sorted)
+
+
+# c. Grouping by Department and calculating average Salary
+grouped = df.groupby('Department')['Salary'].mean()
+
+print("\nAverage Salary by Department:\n")
+print(grouped)
